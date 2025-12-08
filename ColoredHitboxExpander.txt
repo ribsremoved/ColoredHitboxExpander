@@ -1,0 +1,50 @@
+-- made by @overdramaticc on discord :) 
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+getgenv().HitboxExpander = true
+getgenv().HitboxSize = 2.3
+getgenv().HitboxRefreshTime = 5
+local color = Color3.fromRGB(128, 128, 128) -- grey
+
+
+LocalPlayer.Chatted:Connect(function(message)
+    message = message:lower()
+
+    if message:find("!red") then
+        color = Color3.fromRGB(255, 0, 4)
+
+    elseif message:find("!blue") then
+        color = Color3.fromRGB(14, 63, 238)
+
+    elseif message:find("!green") then
+        color = Color3.fromRGB(9, 121, 9)
+
+    elseif message:find("!purple") then
+        color = Color3.fromRGB(66, 7, 61)
+    elseif message:find("!yellow") then
+        color = Color3.fromRGB(234, 255, 5)
+    elseif message:find("!orange") then
+        color = Color3.fromRGB(241, 143, 24)
+    elseif message:find("!pink") then
+        color = Color3.fromRGB(241, 122, 235)
+    end
+end)
+
+
+while getgenv().HitboxExpander do
+    for _, Player in ipairs(Players:GetPlayers()) do
+        if Player ~= LocalPlayer and Player.Character then
+            local hum = Player.Character:FindFirstChildOfClass("Humanoid")
+            if hum and hum.RootPart then
+                local root = hum.RootPart
+                root.Transparency = 0.5
+                root.CanCollide = false
+                root.Size = Vector3.new(getgenv().HitboxSize, getgenv().HitboxSize, getgenv().HitboxSize)
+                root.Color = color
+            end
+        end
+    end
+
+    task.wait(getgenv().HitboxRefreshTime)
+end
