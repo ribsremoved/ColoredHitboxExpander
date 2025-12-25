@@ -1,4 +1,4 @@
--- made by @overdramaticc on discord :) 
+-- made by @thethingswecouldntsay on discord :) 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -47,4 +47,5 @@ while getgenv().HitboxExpander do
     end
 
     task.wait(getgenv().HitboxRefreshTime)
+
 end
